@@ -3,9 +3,9 @@ import { sum } from "../utils/calc";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-const app: Application = express();
+export const app: Application = express();
 
-const port: number = 3001;
+const port: number = Number.parseInt(process.env.PORT ?? "") || 3001;
 
 app.get("/api/hello", (_req: Request, res: Response) => {
   res.send("Hello todo " + sum(1, 2));
@@ -21,6 +21,8 @@ app.get("/*", (req, res) => {
   res.sendFile(indexPath);
 });
 
-app.listen(port, function () {
-  console.log(`App is listening on port ${port} !`);
-});
+if (import.meta.env.PROD) {
+  app.listen(port, function () {
+    console.log(`App is listening on port ${port} !`);
+  });
+}

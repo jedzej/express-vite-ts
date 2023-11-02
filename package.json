@@ -5,25 +5,24 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:front\" \"npm run dev:server\"",
-    "build": "npm run build:server && npm run build:front",
-    "dev:front": "vite",
-    "build:front": "tsc && vite build",
-    "dev:server": "tsx watch ./src/server/app.ts",
-    "build:server": "rollup -c ./rollup.config.js",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
+    "build": "npm run build:api && npm run build:ui",
+    "dev:ui": "vite -c ./vite.ui.config.ts",
+    "build:ui": "vite build -c ./vite.ui.config.ts",
+    "dev:api": "vite -c ./vite.api.config.ts",
+    "build:api": "vite build -c ./vite.api.config.ts",
     "preview": "node dist/app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rollup/plugin-typescript": "^11.1.5",
     "concurrently": "^8.2.2",
     "express": "^4.17.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^4.2.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.5",
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.22",
     "@types/react": "^18.2.15",
@@ -34,9 +33,8 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "nodemon": "^2.0.7",
-    "tsx": "^3.14.0",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-node": "^3.0.2"
   }
 }
