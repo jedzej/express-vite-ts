@@ -13,6 +13,8 @@ app.get("/api/hello", (_req: Request, res: Response) => {
 
 app.use(express.static("./dist/public"));
 
+const a = 1 satisfies string;
+
 app.get("/*", (req, res) => {
   const indexPath = join(
     dirname(fileURLToPath(import.meta.url)),
